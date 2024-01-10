@@ -25,13 +25,16 @@ const clevertapInit = async () => {
     clevertap.default.privacy.push({ useIP: false });
     clevertap.default.setLogLevel(3);
     setClevertapModule(clevertap.default);
+    if (typeof window !== 'undefined') {
+      window.clevertap = clevertap.default
+    }
   }
 
-  if (clevertap) {
-    clevertap.event.push('xxx'); // Popup Campaign
-    clevertap.event.push('test'); // Banner Campaign
-    clevertap.event.push('Internal test'); // Inbox Campaign
-  }
+  // if (clevertap) {
+  //   clevertap.event.push('xxx'); // Popup Campaign
+  //   clevertap.event.push('test'); // Banner Campaign
+  //   clevertap.event.push('Internal test'); // Inbox Campaign
+  // }
 };
 
 const profileData = {
