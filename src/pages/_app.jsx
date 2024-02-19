@@ -20,7 +20,7 @@ const clevertapInit = async () => {
   let clevertap = clevertapModule;
   if (!clevertap) {
     clevertap = await import('clevertap-web-sdk/clevertap');
-    clevertap.default.init("xxx-xxx-xxx");
+    clevertap.default.init("W9R-486-4W5Z");
     clevertap.default.privacy.push({ optOut: false });
     clevertap.default.privacy.push({ useIP: false });
     clevertap.default.setLogLevel(3);
@@ -30,11 +30,18 @@ const clevertapInit = async () => {
     }
   }
 
-  // if (clevertap) {
-  //   clevertap.event.push('xxx'); // Popup Campaign
-  //   clevertap.event.push('test'); // Banner Campaign
-  //   clevertap.event.push('Internal test'); // Inbox Campaign
-  // }
+  if (clevertap) {
+    console.log(clevertap.getCleverTapID())
+    clevertap.notifications.push({
+      "titleText":"Would you like to receive Push Notifications?",
+      "bodyText":"We promise to only send you relevant content and give you updates on your transactions",
+      "okButtonText":"Ok",
+      "rejectButtonText":"Cancel",
+      "okButtonColor":"#F28046",
+      "askAgainTimeInSeconds":5,
+      "serviceWorkerPath": "./firebase-messaging-sw.js"
+    });
+  }
 };
 
 const profileData = {
